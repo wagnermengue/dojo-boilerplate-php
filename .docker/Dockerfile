@@ -1,0 +1,13 @@
+FROM php:8.2-fpm-alpine3.18
+
+RUN apk add --no-cache shadow bash
+RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
+RUN touch /home/www-data/.bashrc | echo "PS1='\w\$ '" >> /home/www-data/.bashrc
+RUN rm -rf /var/www/html
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+WORKDIR /var/www
+RUN usermod -u 1000 www-data
+USER www-data
+EXPOSE 9000
+ENTRYPOINT ["php-fpm"]
