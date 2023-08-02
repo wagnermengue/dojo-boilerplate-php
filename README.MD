@@ -8,4 +8,6 @@
 
 4 - create your classes on `/src` folder
 
-5 - enjoy!
+5 - run `docker-compose exec php composer test` to run all tests
+
+6 - enjoy!
