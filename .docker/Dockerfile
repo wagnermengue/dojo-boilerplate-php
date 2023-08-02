@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine3.18
+FROM php:8.2-cli-alpine3.18
 
 RUN apk add --no-cache shadow bash
 RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
@@ -9,4 +9,4 @@ RUN usermod -u 1000 www-data
 USER www-data
 WORKDIR /var/www
 EXPOSE 9000
-ENTRYPOINT ["php-fpm"]
+CMD ["php", "-S", "0.0.0.0:9000"]
